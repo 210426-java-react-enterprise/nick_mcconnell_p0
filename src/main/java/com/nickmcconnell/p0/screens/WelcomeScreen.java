@@ -34,7 +34,11 @@ public class WelcomeScreen extends Screen{
                     break;
                 case"2":
                     System.out.println("Navigating to register screen");
-                    router.navigate();
+                    router.navigate("/register");
+                    break;
+                case "3":
+                    System.out.println("Exiting application!");
+                    app()
             }
 
         } catch(Exception e){
