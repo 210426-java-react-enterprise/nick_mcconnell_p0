@@ -2,6 +2,7 @@ package com.nickmcconnell.p0.models;
 
 public class AppUser {
 
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -9,7 +10,9 @@ public class AppUser {
     private String lastName;
     private int age;
 
-    public AppUser(String username, String password, String email, String firstName, String lastName, int age){
+    public AppUser(){super();}
+
+    public AppUser(String username, String password, String email, String firstName, String lastName, int age) {
         System.out.println("AppUser constructor invoked!");
 
         this.username = username;
@@ -18,6 +21,14 @@ public class AppUser {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -68,7 +79,7 @@ public class AppUser {
         this.age = age;
     }
 
-    public String toFileString(){
+    public String toFileString() {
         return String.format("%s;%s;%s;%s;%s;%d;", username, password, email, firstName, lastName, age);
     }
 
