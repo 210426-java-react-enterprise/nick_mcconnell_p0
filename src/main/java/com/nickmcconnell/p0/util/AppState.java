@@ -2,6 +2,7 @@ package com.nickmcconnell.p0.util;
 
 import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.screens.LoginScreen;
+import com.nickmcconnell.p0.screens.RegisterScreen;
 import com.nickmcconnell.p0.screens.WelcomeScreen;
 
 import java.io.BufferedReader;
@@ -13,7 +14,7 @@ public class AppState {
     private ScreenRouter router;
     private boolean appRunning;
 
-    public AppState(){
+    public AppState() {
         System.out.println("Initializing application");
 
         appRunning = true;
@@ -24,9 +25,22 @@ public class AppState {
 
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
-            .addScreen(new LoginScreen(consoleReader))
-                .addScreen(new Regis)
-
-
+                .addScreen(new LoginScreen(consoleReader))
+                .addScreen(new RegisterScreen(consoleReader));
+        System.out.println("Application Initialized");
     }
+
+    public ScreenRouter getRouter(){
+        return router;
+    }
+
+    public boolean isAppRunning() {
+        return appRunning;
+    }
+
+    public void setAppRunning(boolean appRunning){
+        this.appRunning = appRunning;
+    }
+
+
 }

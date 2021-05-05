@@ -1,5 +1,6 @@
 package com.nickmcconnell.p0.screens;
 
+import static com.nickmcconnell.p0.Driver.app;
 import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -38,7 +39,10 @@ public class WelcomeScreen extends Screen{
                     break;
                 case "3":
                     System.out.println("Exiting application!");
-                    app()
+                    app().setAppRunning(false);
+                    break;
+                default:
+                    System.out.println("Invalid selection!");
             }
 
         } catch(Exception e){
