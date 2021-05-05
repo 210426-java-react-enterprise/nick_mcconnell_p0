@@ -18,6 +18,22 @@ public class UserDAO {
 
     }
 
+    //Methods needed
+        //createNewUser => account => checking or saving
+        //createAccount => from account screen
+            //Check if column already exists first then
+                //then ALTER table to add account type column
+        //widthdraw funds
+            //check funds => if sum desired greated than account, send overdraft messate
+            //else reduce funds by
+
+        //once logged in => how to stay logged in??
+            // always to select bassed on username and id?
+            //keep pointing at new user?
+
+    //
+
+
     public AppUser findUserByUsernameAndPassword(String username, String password) {
 
         AppUser user = null;
