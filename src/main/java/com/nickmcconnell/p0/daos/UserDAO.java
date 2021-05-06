@@ -18,11 +18,15 @@ public class UserDAO {
 
     }
 
+    //tables
+        //user - PK id
+        //accounts - fk id fromuser
+        //login credentials - fk id from user
+
     //Methods needed
         //createNewUser => account => checking or saving
         //createAccount => from account screen
             //Check if column already exists first then
-                //then ALTER table to add account type column
         //widthdraw funds
             //check funds => if sum desired greated than account, send overdraft messate
             //else reduce funds by
@@ -31,7 +35,12 @@ public class UserDAO {
             // always to select bassed on username and id?
             //keep pointing at new user?
 
-    //
+    //login
+        //on success - get user info and account's and balances => use join
+        //then display menu to create account, deposit or withdraw
+            //after eaach re display above menu with exit option
+
+    //cf
 
 
     public AppUser findUserByUsernameAndPassword(String username, String password) {
