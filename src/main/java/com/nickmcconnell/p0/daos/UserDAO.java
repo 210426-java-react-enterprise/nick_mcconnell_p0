@@ -97,19 +97,20 @@ public class UserDAO {
         return true;
     }
 
-
+    //Not Tested
     public AppUser findUserByUsernameAndPassword(String username, String password) {
 
         AppUser user = null;
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from bank.customers where username = ? and password = ?";
+            String sql = "select * from customers where username = ? and password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
             ResultSet rs = pstmt.executeQuery();
+            System.out.println("login rs " + rs.next());
             while (rs.next()) {
                 user = new AppUser();
                 user.setId(rs.getInt("id"));
