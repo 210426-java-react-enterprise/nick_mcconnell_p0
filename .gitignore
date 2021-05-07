@@ -25,6 +25,7 @@ hs_err_pid*
 sudoCode.md
 
 #build folders
-
 target/
-resources/
+
+# Properties files
+*.properties
