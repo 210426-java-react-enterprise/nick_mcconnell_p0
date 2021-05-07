@@ -48,9 +48,9 @@ public class RegisterScreen extends Screen {
 
             System.out.println("age = " + age);
 
-        }catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your age!  Please try again!");
-//            this.render() // => apparently not the best practice, just put router in here and => "/register"
+            this.render(); // => apparently not the best practice, just put router in here and => "/register"
         } catch (Exception e) {
             e.printStackTrace();
         }
