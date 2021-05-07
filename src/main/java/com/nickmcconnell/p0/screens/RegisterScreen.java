@@ -1,17 +1,21 @@
 package com.nickmcconnell.p0.screens;
 
-import com.nickmcconnell.p0.daos.UserDAO;
+import com.nickmcconnell.p0.exceptions.InvalidRequestException;
+import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
+import com.nickmcconnell.p0.models.AppUser;
+import com.nickmcconnell.p0.services.UserService;
 
 import java.io.BufferedReader;
 
 public class RegisterScreen extends Screen {
 
-    private UserDAO userDAO = new UserDAO();
+    private UserService userService;
     private BufferedReader consoleReader;
 
-    public RegisterScreen(BufferedReader consoleReader) {
+    public RegisterScreen(BufferedReader consoleReader, UserService userService) {
         super("RegisterScreen", "/register");
         this.consoleReader = consoleReader;
+        this.userService = userService;
     }
 
     @Override
@@ -46,11 +50,14 @@ public class RegisterScreen extends Screen {
             System.out.println("Age: ");
             age = Integer.parseInt(consoleReader.readLine());
 
-            System.out.println("age = " + age);
+            AppUser newUser = new AppUser(username, password, email, firstName,lastName, age);
+            userService.register(newUser);
 
         } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your age!  Please try again!");
             this.render(); // => apparently not the best practice, just put router in here and => "/register"
+        }catch(InvalidRequestException | ResourcePersistenceException e){
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

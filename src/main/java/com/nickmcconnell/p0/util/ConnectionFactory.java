@@ -15,7 +15,7 @@ public class ConnectionFactory {
 
     static {
         try {
-            Class.forName("org.posgresql.Driver");
+            Class.forName("org.postgresql.Driver");
         } catch (
                 ClassNotFoundException e) {
             e.printStackTrace();
