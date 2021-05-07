@@ -35,6 +35,11 @@ public class LoginScreen extends Screen{
                 if(authenticateUser != null){
                     System.out.println("Login successful!");
                 }else {
+                       /*
+                        The below code is not necessary, because if the login fails, we will fall
+                        out of this method
+                     */
+//                    router.navigate("/welcome");
                     System.out.println("Login failed!");
                 }
             } else{

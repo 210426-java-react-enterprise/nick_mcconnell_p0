@@ -4,6 +4,7 @@ import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.screens.LoginScreen;
 import com.nickmcconnell.p0.screens.RegisterScreen;
 import com.nickmcconnell.p0.screens.WelcomeScreen;
+import com.nickmcconnell.p0.services.UserService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,11 +23,12 @@ public class AppState {
         consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         final UserDAO userDao = new UserDAO();
+        final UserService userService = new UserService(userDao);
 
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader))
-                .addScreen(new RegisterScreen(consoleReader));
+                .addScreen(new RegisterScreen(consoleReader, userService));
         System.out.println("Application Initialized");
     }
 
