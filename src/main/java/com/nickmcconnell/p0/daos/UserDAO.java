@@ -41,8 +41,8 @@ public class UserDAO {
     public void save(AppUser newUser) {
 
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
-
-            String sqlInsertUser = "insert into customers (username, password, email, first_name, last_name, age) values (?,?,?,?,?,?,)";
+            System.out.println("in try ov userdao save()");
+            String sqlInsertUser = "insert into customers (username, password, email, first_name, last_name, age) values (?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertUser, new String[] {"customer_id"});
             pstmt.setString(1, newUser.getUsername());
             pstmt.setString(2, newUser.getPassword());
@@ -50,6 +50,14 @@ public class UserDAO {
             pstmt.setString(4, newUser.getFirstName());
             pstmt.setString(5, newUser.getLastName());
             pstmt.setInt(6, newUser.getAge());
+            int rowsInserted = pstmt.executeUpdate();
+            System.out.println("rows inserted " + rowsInserted);
+            if(rowsInserted !=0){
+                ResultSet rs = pstmt.getGeneratedKeys();
+                while (rs.next()){
+                    newUser.setId(rs.getInt("customer_id"));
+                }
+            }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
@@ -96,7 +104,7 @@ public class UserDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select * from quizzard.users where username = ? and password = ?";
+            String sql = "select * from bank.customers where username = ? and password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
