@@ -2,9 +2,7 @@ package com.nickmcconnell.p0.util;
 
 import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.screens.LoginScreen;
-import com.nickmcconnell.p0.screens.RegisterScreen;
-import com.nickmcconnell.p0.screens.WelcomeScreen;
+import com.nickmcconnell.p0.screens.*;
 import com.nickmcconnell.p0.services.UserService;
 
 import java.io.BufferedReader;
@@ -28,12 +26,17 @@ public class AppState {
 
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
-                .addScreen(new LoginScreen(consoleReader, userService))
-                .addScreen(new RegisterScreen(consoleReader, userService));
+                .addScreen(new LoginScreen(consoleReader, userService, router))
+                .addScreen(new RegisterScreen(consoleReader, userService, router))
+                .addScreen(new AccountHomeScreen(consoleReader, userService, router))
+                .addScreen(new AccountsViewScreen(consoleReader, userService, router))
+                .addScreen(new AccountCreateScreen(consoleReader, userService, router))
+                .addScreen(new AccountTransactionScreen(consoleReader, userService, router));
+
         System.out.println("Application Initialized");
     }
 
-    public ScreenRouter getRouter(){
+    public ScreenRouter getRouter() {
         return router;
     }
 
@@ -41,7 +44,7 @@ public class AppState {
         return appRunning;
     }
 
-    public void setAppRunning(boolean appRunning){
+    public void setAppRunning(boolean appRunning) {
         this.appRunning = appRunning;
     }
 

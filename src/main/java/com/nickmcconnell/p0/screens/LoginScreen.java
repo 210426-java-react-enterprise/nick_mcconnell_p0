@@ -4,6 +4,7 @@ import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.LoginCredentials;
 import com.nickmcconnell.p0.services.UserService;
+import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
@@ -11,11 +12,13 @@ public class LoginScreen extends Screen{
 //    private UserDAO userDAO = new UserDAO();
     private BufferedReader consoleReader;
     private UserService userService;
+    private ScreenRouter router;
 
-    public LoginScreen(BufferedReader consoleReader, UserService userService){
+    public LoginScreen(BufferedReader consoleReader, UserService userService, ScreenRouter router){
         super("LoginScreen", "/login");
         this.consoleReader = consoleReader;
         this.userService = userService;
+        this.router = router;
     }
 
     @Override
@@ -36,7 +39,14 @@ public class LoginScreen extends Screen{
 
 //            AppUser userLogin = new AppUser(username, password);
             AppUser newUser = userService.login(username, password);
-            System.out.println("line 39 login screen " + newUser);
+
+            if (newUser.getUsername() != null){
+                router.setCurrentUser(newUser);
+                router.navigate("/accounthome");
+            } else {
+                System.out.println("Login Failed.");
+            }
+            System.out.println("line 39 login screen " + newUser.getUsername());
 
         } catch(NullPointerException e){
             System.out.println("line 56 of login screen");
