@@ -33,8 +33,6 @@ public class AppState {
         System.out.println("Application Initialized");
     }
 
-
-
     public ScreenRouter getRouter(){
         return router;
     }
