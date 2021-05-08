@@ -112,25 +112,22 @@ public class UserDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
-
             user = new AppUser();
+
             while (rs.next()) {
 //                user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setAge(rs.getInt("age"));
             }
-//            if (!rs.next()) {
-//                System.out.println("No users match the provided login credentials");
-//            } else {
-//                System.out.println("in slse " + rs.getString("username"));
-//
-//                System.out.println(" after while " + user);
 
-
-//            }
+            if (user.getUsername() == null) {
+                System.out.println("No users match the provided login credentials");
+                return user;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
