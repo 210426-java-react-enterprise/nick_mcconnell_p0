@@ -1,6 +1,7 @@
 package com.nickmcconnell.p0.util;
 
 import com.nickmcconnell.p0.daos.UserDAO;
+import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.screens.LoginScreen;
 import com.nickmcconnell.p0.screens.RegisterScreen;
 import com.nickmcconnell.p0.screens.WelcomeScreen;
@@ -31,6 +32,8 @@ public class AppState {
                 .addScreen(new RegisterScreen(consoleReader, userService));
         System.out.println("Application Initialized");
     }
+
+
 
     public ScreenRouter getRouter(){
         return router;
