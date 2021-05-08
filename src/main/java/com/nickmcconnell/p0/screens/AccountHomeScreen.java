@@ -43,6 +43,10 @@ public class AccountHomeScreen extends Screen {
                     System.out.println("Navigating to Account Transaction Screen");
                     router.navigate("/accounttransaction");
                     break;
+                case "4":
+                    System.out.println("Returning to Welcome Screen");
+                    router.navigate("/welcomescreen");
+                    break;
                 default:
                     System.out.println("Invalid selection1");
             }

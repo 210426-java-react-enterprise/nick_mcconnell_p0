@@ -46,10 +46,8 @@ public class LoginScreen extends Screen{
             } else {
                 System.out.println("Login Failed.");
             }
-            System.out.println("line 39 login screen " + newUser.getUsername());
 
         } catch(NullPointerException e){
-            System.out.println("line 56 of login screen");
             e.printStackTrace();
         } catch (Exception e){
             e.printStackTrace();
