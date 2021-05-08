@@ -2,16 +2,20 @@ package com.nickmcconnell.p0.screens;
 
 import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
+import com.nickmcconnell.p0.models.LoginCredentials;
+import com.nickmcconnell.p0.services.UserService;
 
 import java.io.BufferedReader;
 
 public class LoginScreen extends Screen{
-    private UserDAO userDAO = new UserDAO();
+//    private UserDAO userDAO = new UserDAO();
     private BufferedReader consoleReader;
+    private UserService userService;
 
-    public LoginScreen(BufferedReader consoleReader){
+    public LoginScreen(BufferedReader consoleReader, UserService userService){
         super("LoginScreen", "/login");
         this.consoleReader = consoleReader;
+        this.userService = userService;
     }
 
     @Override
@@ -30,22 +34,29 @@ public class LoginScreen extends Screen{
             System.out.println("Password: ");
             password = consoleReader.readLine();
 
-            if(username != null && !username.isEmpty() && password != null && !password.isEmpty()){
-                AppUser authenticateUser = userDAO.findUserByUsernameAndPassword(username, password);
-                if(authenticateUser != null){
-                    System.out.println("Login successful!");
-                }else {
-                       /*
-                        The below code is not necessary, because if the login fails, we will fall
-                        out of this method
-                     */
-//                    router.navigate("/welcome");
-                    System.out.println("Login failed!");
-                }
-            } else{
-                System.out.println("It looks like you didn't provide any credentials!");
-            }
-        } catch(Exception e){
+            AppUser newUser = new AppUser(username, password);
+            userService.login(newUser);
+
+
+//            if(username != null && !username.isEmpty() && password != null && !password.isEmpty()){
+//                AppUser authenticateUser = userDAO.findUserByUsernameAndPassword(username, password);
+//                if(authenticateUser != null){
+//                    System.out.println("Login successful!");
+//                }else {
+//                       /*
+//                        The below code is not necessary, because if the login fails, we will fall
+//                        out of this method
+//                     */
+////                    router.navigate("/welcome");
+//                    System.out.println("Login failed!");
+//                }
+//            } else{
+//                System.out.println("It looks like you didn't provide any credentials!");
+//            }
+        } catch(NullPointerException e){
+            System.out.println("line 56 of login screen");
+            e.printStackTrace();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

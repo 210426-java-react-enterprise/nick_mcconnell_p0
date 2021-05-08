@@ -4,6 +4,7 @@ import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
+import com.nickmcconnell.p0.models.LoginCredentials;
 
 public class UserService {
 
@@ -29,6 +30,14 @@ public class UserService {
         userDao.save(newUser);
     }
 
+    public void login(AppUser newUser){
+        try {
+            System.out.println("user login " + newUser);
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
         if (user.getUsername() == null || user.getUsername().trim().isEmpty() || user.getUsername().length() > 20)
@@ -44,4 +53,6 @@ public class UserService {
 
         return true;
     }
+
+
 }

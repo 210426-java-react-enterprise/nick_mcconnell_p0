@@ -110,7 +110,7 @@ public class UserDAO {
             pstmt.setString(2, password);
 
             ResultSet rs = pstmt.executeQuery();
-            System.out.println("login rs " + rs.next());
+
             while (rs.next()) {
                 user = new AppUser();
                 user.setId(rs.getInt("id"));
