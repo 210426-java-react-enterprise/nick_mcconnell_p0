@@ -101,7 +101,6 @@ public class UserDAO {
     public AppUser findUserByUsernameAndPassword(String username, String password) {
 
         AppUser user = null;
-//        System.out.println("104 "+ user);
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
@@ -115,7 +114,7 @@ public class UserDAO {
             user = new AppUser();
 
             while (rs.next()) {
-//                user.setId(rs.getInt("id"));
+                user.setId(rs.getInt("customer_id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));

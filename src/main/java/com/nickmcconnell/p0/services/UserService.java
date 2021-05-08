@@ -36,7 +36,6 @@ public class UserService {
         }
 
        AppUser newUser =  userDao.findUserByUsernameAndPassword(username, password);
-        System.out.println(" userdao login " + newUser);
         return newUser;
     }
 

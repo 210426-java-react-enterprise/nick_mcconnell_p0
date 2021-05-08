@@ -38,22 +38,6 @@ public class LoginScreen extends Screen{
             AppUser newUser = userService.login(username, password);
             System.out.println("line 39 login screen " + newUser);
 
-
-//            if(username != null && !username.isEmpty() && password != null && !password.isEmpty()){
-//                AppUser authenticateUser = userDAO.findUserByUsernameAndPassword(username, password);
-//                if(authenticateUser != null){
-//                    System.out.println("Login successful!");
-//                }else {
-//                       /*
-//                        The below code is not necessary, because if the login fails, we will fall
-//                        out of this method
-//                     */
-////                    router.navigate("/welcome");
-//                    System.out.println("Login failed!");
-//                }
-//            } else{
-//                System.out.println("It looks like you didn't provide any credentials!");
-//            }
         } catch(NullPointerException e){
             System.out.println("line 56 of login screen");
             e.printStackTrace();
