@@ -33,7 +33,7 @@ public class AccountsViewScreen extends Screen {
             System.out.println("You have not created an account.");
 
         } else {
-            System.out.println("Account - " + currentAccount.getAccountType());
+            System.out.println("Account - " + currentAccount.getAccountType()+": $"+currentAccount.getBalance());
         }
         router.navigate("/accounthome");
 
