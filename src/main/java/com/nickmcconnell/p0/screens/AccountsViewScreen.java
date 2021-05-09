@@ -27,13 +27,13 @@ public class AccountsViewScreen extends Screen {
 
         AppUser currentUser = router.getCurrentUser();
 
-        UserAccount currentAccount = accountDao.getUserAccounts(currentUser);
+        UserAccount currentAccount = accountDao.getAccount(currentUser);
 
         if(currentAccount.getAccountType() == null){
             System.out.println("You have not created an account.");
 
         } else {
-            System.out.println("Account - " + currentAccount.getAccountType()+": $"+currentAccount.getBalance());
+//            System.out.println("Account - " + currentAccount.getAccountType()+": $"+currentAccount.getBalance());
         }
         router.navigate("/accounthome");
 
