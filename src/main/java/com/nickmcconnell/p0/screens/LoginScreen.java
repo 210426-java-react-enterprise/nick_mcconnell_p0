@@ -2,16 +2,23 @@ package com.nickmcconnell.p0.screens;
 
 import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
+import com.nickmcconnell.p0.models.LoginCredentials;
+import com.nickmcconnell.p0.services.UserService;
+import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
 public class LoginScreen extends Screen{
-    private UserDAO userDAO = new UserDAO();
+//    private UserDAO userDAO = new UserDAO();
     private BufferedReader consoleReader;
+    private UserService userService;
+    private ScreenRouter router;
 
-    public LoginScreen(BufferedReader consoleReader){
+    public LoginScreen(BufferedReader consoleReader, UserService userService, ScreenRouter router){
         super("LoginScreen", "/login");
         this.consoleReader = consoleReader;
+        this.userService = userService;
+        this.router = router;
     }
 
     @Override
@@ -30,22 +37,19 @@ public class LoginScreen extends Screen{
             System.out.println("Password: ");
             password = consoleReader.readLine();
 
-            if(username != null && !username.isEmpty() && password != null && !password.isEmpty()){
-                AppUser authenticateUser = userDAO.findUserByUsernameAndPassword(username, password);
-                if(authenticateUser != null){
-                    System.out.println("Login successful!");
-                }else {
-                       /*
-                        The below code is not necessary, because if the login fails, we will fall
-                        out of this method
-                     */
-//                    router.navigate("/welcome");
-                    System.out.println("Login failed!");
-                }
-            } else{
-                System.out.println("It looks like you didn't provide any credentials!");
+//            AppUser userLogin = new AppUser(username, password);
+            AppUser newUser = userService.login(username, password);
+
+            if (newUser.getUsername() != null){
+                router.setCurrentUser(newUser);
+                router.navigate("/accounthome");
+            } else {
+                System.out.println("Login Failed.");
             }
-        } catch(Exception e){
+
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

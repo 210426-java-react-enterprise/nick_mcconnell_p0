@@ -4,6 +4,7 @@ import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.services.UserService;
+import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
@@ -12,7 +13,7 @@ public class RegisterScreen extends Screen {
     private UserService userService;
     private BufferedReader consoleReader;
 
-    public RegisterScreen(BufferedReader consoleReader, UserService userService) {
+    public RegisterScreen(BufferedReader consoleReader, UserService userService, ScreenRouter router) {
         super("RegisterScreen", "/register");
         this.consoleReader = consoleReader;
         this.userService = userService;

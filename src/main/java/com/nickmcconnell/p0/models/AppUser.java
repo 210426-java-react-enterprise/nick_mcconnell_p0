@@ -23,6 +23,11 @@ public class AppUser {
         this.age = age;
     }
 
+//    public AppUser(String username, String password){
+//        this.username = username;
+//        this.password = password;
+//    }
+
     public int getId() {
         return id;
     }
