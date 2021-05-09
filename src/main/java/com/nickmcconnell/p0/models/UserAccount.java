@@ -8,7 +8,7 @@ public class UserAccount {
 
     public UserAccount(){super();}
 
-    public UserAccount(int id, String accountType, float balance){
+    public UserAccount(int id, String accountType){
         this.id = id;
         this.accountType = accountType;
         this.balance = balance;
