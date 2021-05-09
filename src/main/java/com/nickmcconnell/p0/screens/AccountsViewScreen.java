@@ -31,12 +31,11 @@ public class AccountsViewScreen extends Screen {
 
         if(currentAccount.getAccountType() == null){
             System.out.println("You have not created an account.");
-            router.navigate("/accounthome");
 
         } else {
-            System.out.println("Account - " + currentAccount.getAccountType() + ": $" + currentAccount.getBalance());
-            router.navigate("/accounthome");
+            System.out.println("Account - " + currentAccount.getAccountType());
         }
+        router.navigate("/accounthome");
 
 
         //if no accounts navigate to create account

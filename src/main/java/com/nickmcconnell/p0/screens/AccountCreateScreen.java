@@ -14,25 +14,28 @@ public class AccountCreateScreen extends Screen {
     private ScreenRouter router;
     private AccountDAO accountDAO;
 
-    public AccountCreateScreen(BufferedReader consoleReader, AccountService accountService, ScreenRouter router, AccountDAO accountDao){
+    public AccountCreateScreen(BufferedReader consoleReader, AccountService accountService, ScreenRouter router, AccountDAO accountDao) {
         super("AccountCreateScreen", "/createaccount");
         this.consoleReader = consoleReader;
         this.accountService = accountService;
         this.router = router;
-        this.accountDAO= accountDao;
+        this.accountDAO = accountDao;
     }
 
     @Override
-    public void render(){
+    public void render() {
         AppUser currentUser = router.getCurrentUser();
         UserAccount currentAccount = accountDAO.getUserAccounts(currentUser);
-
-        if(currentAccount.getAccountType() != null){
-            System.out.println("You have already created an account.");
-            System.out.println("------------------------------------");
-            router.navigate("/accounthome");
+        try {
+            if (currentAccount.getAccountType() != null) {
+                System.out.println("You have already created an account.");
+                System.out.println("------------------------------------");
+                router.navigate("/accounthome");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        try{
+        try {
             System.out.println("Choose an account type to open:");
             System.out.println("1) Checking");
             System.out.println("2) Savings");
@@ -41,7 +44,10 @@ public class AccountCreateScreen extends Screen {
             switch (userSelection) {
                 case "1":
                     // call create account method pass type as param
-                    success = accountDAO.createAccount("Checking", currentUser.getId());
+                    accountDAO.createAccount("Checking", currentUser.getId());
+                    UserAccount userAccount = accountDAO.getUserAccounts(router.getCurrentUser());
+                    System.out.println("user account create scren " + userAccount.getId());
+                    accountDAO.createInitialBalance(userAccount.getId());
                     break;
                 case "2":
                     accountDAO.createAccount("Saving", currentUser.getId());
@@ -50,17 +56,15 @@ public class AccountCreateScreen extends Screen {
                     System.out.println("Invalid selection.");
             }
 
-            if(success == true){
+            if (success) {
                 System.out.println("Account creation: Success!");
-                router.navigate("/accounthome");
             } else {
                 System.out.println("Account creation: failed.");
-                router.navigate("/accounthome");
             }
-        }catch(Exception e){
+            router.navigate("/accounthome");
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
     }

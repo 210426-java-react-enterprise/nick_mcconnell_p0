@@ -13,7 +13,7 @@ public class AccountDAO {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "select balances.balance_id, accounts.account_type, balances.balance from customers inner join accounts on ? = accounts.customer_id inner join balances on accounts.account_id = balances.account_id;";
+            String sql = "select accounts.account_type, account_id from customers inner join accounts on ? = accounts.customer_id;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, currentUser.getId());
 
@@ -22,9 +22,8 @@ public class AccountDAO {
             userAccount = new UserAccount();
 
             while (rs.next()) {
-                userAccount.setId(rs.getInt("balance_id"));
+                userAccount.setId(rs.getInt("account_id"));
                 userAccount.setAccountType(rs.getString("account_type"));
-                userAccount.setBalance(rs.getFloat("balance"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,7 +31,32 @@ public class AccountDAO {
         return userAccount;
     }
 
+//    public UserAccount getBalance(AppUser currentUser) {
+//        UserAccount userAccount = null;
+//
+//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+//
+//            String sql = "select balances.balance_id, accounts.account_type, balances.balance from customers inner join accounts on ? = accounts.customer_id inner join balances on accounts.account_id = balances.account_id;";
+//            PreparedStatement pstmt = conn.prepareStatement(sql);
+//            pstmt.setInt(1, currentUser.getId());
+//
+//            ResultSet rs = pstmt.executeQuery();
+//
+//            userAccount = new UserAccount();
+//
+//            while (rs.next()) {
+//                userAccount.setId(rs.getInt("balance_id"));
+//                userAccount.setAccountType(rs.getString("account_type"));
+//                userAccount.setBalance(rs.getFloat("balance"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return userAccount;
+//    }
+
     public boolean createAccount(String accountType, int currentUserId) {
+
         int rowsInserted = 0;
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
             String sql = "insert into accounts(account_type, customer_id) values (?, ?);";
@@ -47,11 +71,16 @@ public class AccountDAO {
             e.printStackTrace();
         }
 
+
         if(rowsInserted == 1){
             return true;
         } else {
             return false;
         }
+    }
+
+    public void createInitialBalance(int accountId){
+        System.out.println("in create innitial balance " + accountId);
 
     }
 }
