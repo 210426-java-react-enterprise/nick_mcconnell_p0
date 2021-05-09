@@ -9,8 +9,6 @@ import java.sql.*;
 public class AccountDAO {
 
     public UserAccount getUserAccounts(AppUser currentUser) {
-        System.out.println("in accountDao get user accounts " + currentUser);
-
         UserAccount userAccount = null;
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -28,11 +26,32 @@ public class AccountDAO {
                 userAccount.setAccountType(rs.getString("account_type"));
                 userAccount.setBalance(rs.getFloat("balance"));
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return userAccount;
+    }
+
+    public boolean createAccount(String accountType, int currentUserId) {
+        int rowsInserted = 0;
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "insert into accounts(account_type, customer_id) values (?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, accountType);
+            pstmt.setInt(2, currentUserId);
+
+            rowsInserted = pstmt.executeUpdate();
+            System.out.println("ros inser " + rowsInserted);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        if(rowsInserted == 1){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

@@ -37,7 +37,26 @@ public class AccountCreateScreen extends Screen {
             System.out.println("1) Checking");
             System.out.println("2) Savings");
             String userSelection = consoleReader.readLine();
+            boolean success = true;
+            switch (userSelection) {
+                case "1":
+                    // call create account method pass type as param
+                    success = accountDAO.createAccount("Checking", currentUser.getId());
+                    break;
+                case "2":
+                    accountDAO.createAccount("Saving", currentUser.getId());
+                    break;
+                default:
+                    System.out.println("Invalid selection.");
+            }
 
+            if(success == true){
+                System.out.println("Account creation: Success!");
+                router.navigate("/accounthome");
+            } else {
+                System.out.println("Account creation: failed.");
+                router.navigate("/accounthome");
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
