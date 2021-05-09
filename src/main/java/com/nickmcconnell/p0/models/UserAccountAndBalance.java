@@ -1,16 +1,17 @@
 package com.nickmcconnell.p0.models;
 
-public class UserAccount {
-
+public class UserAccountAndBalance {
     private int id;
     private String accountType;
+    private float balance;
 
-    public UserAccount(){super();}
+    public UserAccountAndBalance(){super();}
 
-    public UserAccount(int id, String accountType){
+    public UserAccountAndBalance(int id, String accountType, float balance){
+
         this.id = id;
         this.accountType = accountType;
-
+        this.balance = balance;
     }
 
     public int getId() {
@@ -29,4 +30,11 @@ public class UserAccount {
         this.accountType = accountType;
     }
 
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
 }

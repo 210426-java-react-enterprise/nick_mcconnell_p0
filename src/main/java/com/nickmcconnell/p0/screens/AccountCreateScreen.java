@@ -25,7 +25,9 @@ public class AccountCreateScreen extends Screen {
     @Override
     public void render() {
         AppUser currentUser = router.getCurrentUser();
-        UserAccount currentAccount = accountDAO.getUserAccounts(currentUser);
+        UserAccount currentAccount = accountDAO.getAccount(currentUser);
+        System.out.println("currentAccount " + currentAccount.getId());
+
         try {
             if (currentAccount.getAccountType() != null) {
                 System.out.println("You have already created an account.");
@@ -35,42 +37,43 @@ public class AccountCreateScreen extends Screen {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         try {
             System.out.println("Choose an account type to open:");
             System.out.println("1) Checking");
             System.out.println("2) Savings");
             String userSelection = consoleReader.readLine();
             boolean success = true;
+            String accountType = "";
             switch (userSelection) {
                 case "1":
-                    // call create account method pass type as param
-                    success = accountDAO.createAccount("Checking", currentUser.getId());
-                    if(!success){
-                        System.out.println("Account creation failed");
-                        break;
-                    }
-
-                    UserAccount userAccount = accountDAO.getUserAccounts(router.getCurrentUser());
-                    System.out.println("user account create scren " + userAccount.getId());
-                    success = accountDAO.createInitialBalance(userAccount.getId());
-                    if(!success){
-                        System.out.println(userAccount.getAccountType() + " account balance initialization failed");
-                        break;
-                    }
+                    accountType = "Checking";
                     break;
                 case "2":
-                    accountDAO.createAccount("Saving", currentUser.getId());
+                    accountType = "Savings";
                     break;
                 default:
                     System.out.println("Invalid selection.");
             }
 
+            System.out.println("accountType "+ accountType);
+            success = accountDAO.createAccount(accountType, currentUser.getId());
+            if (!success) {
+                System.out.println("Account creation failed.");
+                router.navigate("/accounthome");
+            }
+
+            UserAccount userAccount = accountDAO.getAccount(router.getCurrentUser());
+            success = accountDAO.createInitialBalance(userAccount.getId());
+            if (!success) {
+                System.out.println(userAccount.getAccountType() + " account balance initialization failed.");
+                router.navigate("/accounthome");
+            }
+
             if (success) {
                 System.out.println("Account creation: Success!");
-            } else {
-                System.out.println("Account creation: failed.");
+                router.navigate("/viewaccounts");
             }
-            router.navigate("/accounthome");
         } catch (Exception e) {
             e.printStackTrace();
         }
