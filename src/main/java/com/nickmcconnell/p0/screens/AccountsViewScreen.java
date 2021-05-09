@@ -25,13 +25,9 @@ public class AccountsViewScreen extends Screen {
     @Override
     public void render() {
 
-        //get accounts
-        // sql call
-
-        AccountDAO userAccounts = new AccountDAO();
         AppUser currentUser = router.getCurrentUser();
 
-        UserAccount currentAccount = userAccounts.getUserAccounts(currentUser);
+        UserAccount currentAccount = accountDao.getUserAccounts(currentUser);
 
         System.out.println("Account - " + currentAccount.getAccountType() + ": $" + currentAccount.getBalance());
         router.navigate("/accounthome");
