@@ -4,14 +4,14 @@ public class UserAccount {
 
     private int id;
     private String accountType;
-//    private float balance;
+    private float balance;
 
     public UserAccount(){super();}
 
     public UserAccount(int id, String accountType){
         this.id = id;
         this.accountType = accountType;
-//        this.balance = balance;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -30,11 +30,11 @@ public class UserAccount {
         this.accountType = accountType;
     }
 
-//    public float getBalance() {
-//        return balance;
-//    }
-//
-//    public void setBalance(float balance) {
-//        this.balance = balance;
-//    }
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
 }

@@ -44,10 +44,19 @@ public class AccountCreateScreen extends Screen {
             switch (userSelection) {
                 case "1":
                     // call create account method pass type as param
-                    accountDAO.createAccount("Checking", currentUser.getId());
+                    success = accountDAO.createAccount("Checking", currentUser.getId());
+                    if(!success){
+                        System.out.println("Account creation failed");
+                        break;
+                    }
+
                     UserAccount userAccount = accountDAO.getUserAccounts(router.getCurrentUser());
                     System.out.println("user account create scren " + userAccount.getId());
-                    accountDAO.createInitialBalance(userAccount.getId());
+                    success = accountDAO.createInitialBalance(userAccount.getId());
+                    if(!success){
+                        System.out.println(userAccount.getAccountType() + " account balance initialization failed");
+                        break;
+                    }
                     break;
                 case "2":
                     accountDAO.createAccount("Saving", currentUser.getId());
