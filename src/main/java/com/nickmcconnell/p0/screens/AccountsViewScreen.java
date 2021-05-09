@@ -25,16 +25,20 @@ public class AccountsViewScreen extends Screen {
     @Override
     public void render() {
 
-        //get accounts
-        // sql call
-
-        AccountDAO userAccounts = new AccountDAO();
         AppUser currentUser = router.getCurrentUser();
 
-        UserAccount currentAccount = userAccounts.getUserAccounts(currentUser);
+        UserAccount currentAccount = accountDao.getUserAccounts(currentUser);
 
-        System.out.println("Account - " + currentAccount.getAccountType() + ": $" + currentAccount.getBalance());
-        router.navigate("/accounthome");
+        if(currentAccount.getAccountType() == null){
+            System.out.println("You have not created an account.");
+            router.navigate("/accounthome");
+
+        } else {
+            System.out.println("Account - " + currentAccount.getAccountType() + ": $" + currentAccount.getBalance());
+            router.navigate("/accounthome");
+        }
+
+
         //if no accounts navigate to create account
         // mayb ask to create y or not
         // y to createscreen

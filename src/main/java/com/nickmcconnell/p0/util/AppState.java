@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 
 public class AppState {
 
+    private AccountService accountService;
     private BufferedReader consoleReader;
     private ScreenRouter router;
     private boolean appRunning;
@@ -25,17 +26,15 @@ public class AppState {
 
         final UserDAO userDao = new UserDAO();
         final UserService userService = new UserService(userDao);
-
         final AccountDAO accountDao = new AccountDAO();
-//        final AccountService accountService = new AccountService();
-
+        final AccountService accountService = new AccountService();
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader, userService, router))
                 .addScreen(new RegisterScreen(consoleReader, userService, router))
                 .addScreen(new AccountHomeScreen(consoleReader, userService, router))
                 .addScreen(new AccountsViewScreen(consoleReader, router, accountDao))
-                .addScreen(new AccountCreateScreen(consoleReader, userService, router))
+                .addScreen(new AccountCreateScreen(consoleReader, accountService, router, accountDao))
                 .addScreen(new AccountTransactionScreen(consoleReader, userService, router));
 
         System.out.println("Application Initialized");

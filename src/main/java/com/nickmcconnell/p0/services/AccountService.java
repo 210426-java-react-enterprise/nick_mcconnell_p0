@@ -10,6 +10,10 @@ public class AccountService {
         this.accountDao = accountDao;
     }
 
+    public AccountService() {
+
+    }
+
 //    public
 
 }
