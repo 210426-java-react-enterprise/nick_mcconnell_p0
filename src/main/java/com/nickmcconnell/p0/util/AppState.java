@@ -27,7 +27,7 @@ public class AppState {
         final UserDAO userDao = new UserDAO();
         final UserService userService = new UserService(userDao);
         final AccountDAO accountDao = new AccountDAO();
-        final AccountService accountService = new AccountService();
+        final AccountService accountService = new AccountService(accountDao);
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader, userService, router))
@@ -35,7 +35,7 @@ public class AppState {
                 .addScreen(new AccountHomeScreen(consoleReader, userService, router))
                 .addScreen(new AccountsViewScreen(consoleReader, router, accountDao))
                 .addScreen(new AccountCreateScreen(consoleReader, accountService, router, accountDao))
-                .addScreen(new AccountTransactionScreen(consoleReader, userService, router));
+                .addScreen(new AccountTransactionScreen(consoleReader, accountService, router, accountDao));
 
         System.out.println("Application Initialized");
     }

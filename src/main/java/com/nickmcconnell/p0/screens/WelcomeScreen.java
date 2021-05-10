@@ -1,6 +1,8 @@
 package com.nickmcconnell.p0.screens;
 
 import static com.nickmcconnell.p0.Driver.app;
+
+import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -18,7 +20,6 @@ public class WelcomeScreen extends Screen{
 
     @Override
     public void render() {
-
         System.out.println("Welcome to Bank!");
         System.out.println("1) Login");
         System.out.println("2) Register");
