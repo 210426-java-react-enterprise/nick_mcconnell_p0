@@ -93,10 +93,14 @@ public class AccountTransactionScreen extends Screen {
             if (transactionType.equals("Deposit")) {
                 System.out.println("deposit if");
                 Float depositBalanceSum = Float.sum(transactionAmount, userAccountAndBalance.getBalance());
-                transactionService.checkWithdrawal(userAccountAndBalance.getId(), depositBalanceSum);
+                transactionService.validateDeposit(userAccountAndBalance.getId(), depositBalanceSum);
 
             } else {
                 System.out.println("withdrawal if");
+                float withdrawalBalanceSumDiff = userAccountAndBalance.getBalance() - transactionAmount;
+                System.out.println("withhdrwalbalancesum diff: " + withdrawalBalanceSumDiff);
+                transactionService.validateWithdrawl(userAccountAndBalance.getId(), withdrawalBalanceSumDiff);
+
             }
             router.navigate("/accounthome");
         } catch (NumberFormatException e) {

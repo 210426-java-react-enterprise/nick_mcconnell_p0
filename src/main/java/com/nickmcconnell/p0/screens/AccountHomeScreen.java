@@ -49,6 +49,7 @@ public class AccountHomeScreen extends Screen {
                     break;
                 default:
                     System.out.println("Invalid selection.");
+                    router.navigate("/accounthome");
             }
         } catch (Exception e) {
             e.printStackTrace();

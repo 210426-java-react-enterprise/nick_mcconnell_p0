@@ -8,10 +8,18 @@ public class TransactionService {
 
     public TransactionService(TransactionDAO transactionDao){this.transactionDao=transactionDao;}
 
-    public void checkWithdrawal(int id, float deposit){
+    public void validateDeposit(int id, float deposit){
 
-        boolean update = transactionDao.accountDeposit(id, deposit);
-        System.out.println("transaction service: in checkwithdrawl: " + update);
+        boolean update = transactionDao.updateBalance(id, deposit);
+        System.out.println("Deposit status: " + update);
     }
+
+    public void validateWithdrawl(int id, float deposit){
+
+        boolean update = transactionDao.updateBalance(id, deposit);
+        System.out.println("Deposit status: " + update);
+    }
+
+
 
 }
