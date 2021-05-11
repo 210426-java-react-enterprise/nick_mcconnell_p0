@@ -45,6 +45,7 @@ public class LoginScreen extends Screen{
                 router.navigate("/accounthome");
             } else {
                 System.out.println("Login Failed.");
+                router.navigate("/welcome");
             }
 
         } catch(NullPointerException e){
