@@ -1,6 +1,7 @@
 package com.nickmcconnell.p0.services;
 
 import com.nickmcconnell.p0.daos.TransactionDAO;
+import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 
 public class TransactionService {
 
@@ -10,14 +11,27 @@ public class TransactionService {
 
     public void validateDeposit(int id, float deposit){
 
+        transactionDao.updateBalance(id, deposit);
+    }
+
+    public void executeWithdrawal(int id, float deposit){
+
         boolean update = transactionDao.updateBalance(id, deposit);
         System.out.println("Deposit status: " + update);
     }
 
-    public void validateWithdrawl(int id, float deposit){
+    public float validateWithdrawal(String transactionType, String withdrawal, float transactionAmount, float balance) throws InvalidRequestException{
+        if (transactionType.equals(withdrawal) && transactionAmount > balance){
+            throw new InvalidRequestException("Your withdrawal amount cannot exceed the balance of your account.");
+        };
+        float withdrawalBalanceSumDiff = balance - transactionAmount;
+        return withdrawalBalanceSumDiff;
+    }
 
-        boolean update = transactionDao.updateBalance(id, deposit);
-        System.out.println("Deposit status: " + update);
+    public void validateTransactionAmt(float transactionAmount) throws InvalidRequestException {
+        if(transactionAmount < 0) {
+            throw new InvalidRequestException("Your transaction amount cannot be less than $0.00!");
+        }
     }
 
 

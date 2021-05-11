@@ -44,6 +44,7 @@ public class WelcomeScreen extends Screen{
                     break;
                 default:
                     System.out.println("Invalid selection!");
+                    router.navigate("/welcome");
             }
 
         } catch(Exception e){

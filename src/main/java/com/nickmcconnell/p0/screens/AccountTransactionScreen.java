@@ -56,6 +56,7 @@ public class AccountTransactionScreen extends Screen {
         System.out.println("------------------------");
         System.out.println("1) Deposit");
         System.out.println("2) Withdrawal");
+        System.out.println("3) Account Home");
 
         try {
             System.out.print("> ");
@@ -72,42 +73,44 @@ public class AccountTransactionScreen extends Screen {
                 case "2":
                     transactionType = withdrawal;
                     break;
+                case "3":
+                    router.navigate("/accounthome");
                 default:
                     System.out.println("Invalid entry");
-                    router.navigate("/accounthome");
+                    router.navigate("/accounttransaction");
             }
 
             System.out.printf("How much would you like to %s?\n", transactionType);
             transactionAmount = Float.parseFloat(consoleReader.readLine());
-            //call service function
-            if (transactionAmount < 0) {
-                System.out.println("You must enter an amount greater than 0.");
-                router.navigate("/accounthome");
-            } else if (transactionType.equals(withdrawal) && transactionAmount > userAccountAndBalance.getBalance()) {
-                System.out.println("Invalid amount. Withdrawal amount greater than account balance.");
-                router.navigate("/accounthome");
-            }
+            transactionService.validateTransactionAmt(transactionAmount);
 
-            System.out.println("trans type and trans amount " + transactionType + " " + transactionAmount);
+//            if (transactionAmount < 0) {
+//                System.out.println("You must enter an amount greater than 0.");
+//                router.navigate("/accounthome");
+//            } else
+
+//                if (transactionType.equals(withdrawal) && transactionAmount > userAccountAndBalance.getBalance()) {
+//                System.out.println("Invalid amount. Withdrawal amount greater than account balance.");
+//                router.navigate("/accounthome");
+//            }
+            float withdrawalAmount = transactionService.validateWithdrawal(transactionType, withdrawal, transactionAmount, userAccountAndBalance.getBalance());
 
             if (transactionType.equals("Deposit")) {
-                System.out.println("deposit if");
                 Float depositBalanceSum = Float.sum(transactionAmount, userAccountAndBalance.getBalance());
                 transactionService.validateDeposit(userAccountAndBalance.getId(), depositBalanceSum);
 
             } else {
-                System.out.println("withdrawal if");
-                float withdrawalBalanceSumDiff = userAccountAndBalance.getBalance() - transactionAmount;
-                System.out.println("withhdrwalbalancesum diff: " + withdrawalBalanceSumDiff);
-                transactionService.validateWithdrawl(userAccountAndBalance.getId(), withdrawalBalanceSumDiff);
+//                float withdrawalBalanceSumDiff = userAccountAndBalance.getBalance() - transactionAmount;
+                transactionService.executeWithdrawal(userAccountAndBalance.getId(), withdrawalAmount);
 
             }
-            router.navigate("/accounthome");
+            router.navigate("/viewaccounts");
         } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your transaction.");
-            this.render(); // => apparently not the best practice, just put router in here and => "/register"
-        }catch(InvalidRequestException | ResourcePersistenceException e){
+            router.navigate("/accounttransaction");
+        } catch (InvalidRequestException | ResourcePersistenceException e) {
             e.printStackTrace();
+            router.navigate("/accounttransaction");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -26,8 +26,6 @@ public class AccountCreateScreen extends Screen {
     public void render() {
         AppUser currentUser = router.getCurrentUser();
         UserAccount currentAccount = accountDAO.getAccount(currentUser);
-        System.out.println("currentAccount " + currentAccount.getId());
-
         try {
             if (currentAccount.getAccountType() != null) {
                 System.out.println("You have already created an account.");
@@ -42,6 +40,8 @@ public class AccountCreateScreen extends Screen {
             System.out.println("Choose an account type to open:");
             System.out.println("1) Checking");
             System.out.println("2) Savings");
+            System.out.println("3) Go Back");
+
             String userSelection = consoleReader.readLine();
             boolean success = true;
             String accountType = "";
@@ -52,8 +52,13 @@ public class AccountCreateScreen extends Screen {
                 case "2":
                     accountType = "Savings";
                     break;
+                case "3":
+                   router.navigate("/accounthome");
+                    break;
                 default:
                     System.out.println("Invalid selection.");
+                    router.navigate("/createscreen");
+
             }
 
             System.out.println("accountType "+ accountType);
