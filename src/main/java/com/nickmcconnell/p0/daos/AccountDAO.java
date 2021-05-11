@@ -35,7 +35,7 @@ public class AccountDAO {
     }
 
     public UserAccount getAccount(AppUser currentUser){
-
+        System.out.println("in get account");
         UserAccount userAccount = null;
         try(Connection conn = ConnectionFactory.getInstance().getConnection()){
             String sql = "select * from accounts where customer_id = ?";
@@ -50,6 +50,8 @@ public class AccountDAO {
                 userAccount.setId(rs.getInt("account_id"));
                 userAccount.setAccountType(rs.getString("account_type"));
             }
+
+            System.out.println(" after sql call " + userAccount.getId());
 
         } catch (SQLException e){
             e.printStackTrace();
@@ -105,7 +107,6 @@ public class AccountDAO {
     }
 
     public boolean createInitialBalance(int accountId) {
-        System.out.println("in create innitial balance " + accountId);
         int rowsInserted = 0;
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {

@@ -1,6 +1,8 @@
 package com.nickmcconnell.p0.screens;
 
 import com.nickmcconnell.p0.daos.AccountDAO;
+import com.nickmcconnell.p0.exceptions.InvalidRequestException;
+import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.services.AccountService;
@@ -24,27 +26,41 @@ public class AccountCreateScreen extends Screen {
 
     @Override
     public void render() {
+
         AppUser currentUser = router.getCurrentUser();
-        UserAccount currentAccount = accountDAO.getAccount(currentUser);
-        try {
-            if (currentAccount.getAccountType() != null) {
-                System.out.println("You have already created an account.");
-                System.out.println("------------------------------------");
-                router.navigate("/accounthome");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            accountService.checkExistingAccount(currentUser);
+////        UserAccount currentAccount = accountDAO.getAccount(currentUser);
+//
+////            if (currentAccount.getAccountType() != null) {
+////                System.out.println("You have already created an account.");
+////                System.out.println("------------------------------------");
+////                router.navigate("/accounthome");
+////            }
+//        } catch (ResourcePersistenceException e) {
+//            e.printStackTrace();
+//            router.navigate("/accounthome");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            router.navigate("/accounthome");
+//        }
 
         try {
+
+            accountService.checkExistingAccount(currentUser);
+
             System.out.println("Choose an account type to open:");
             System.out.println("1) Checking");
             System.out.println("2) Savings");
-            System.out.println("3) Go Back");
+            System.out.println("3) Account Home");
+            System.out.println("> ");
 
             String userSelection = consoleReader.readLine();
+
             boolean success = true;
             String accountType = "";
+
             switch (userSelection) {
                 case "1":
                     accountType = "Checking";
@@ -53,22 +69,27 @@ public class AccountCreateScreen extends Screen {
                     accountType = "Savings";
                     break;
                 case "3":
-                   router.navigate("/accounthome");
+                    router.navigate("/accounthome");
                     break;
                 default:
                     System.out.println("Invalid selection.");
                     router.navigate("/createscreen");
-
             }
 
-            System.out.println("accountType "+ accountType);
-            success = accountDAO.createAccount(accountType, currentUser.getId());
-            if (!success) {
-                System.out.println("Account creation failed.");
-                router.navigate("/accounthome");
-            }
 
-            UserAccount userAccount = accountDAO.getAccount(router.getCurrentUser());
+//            System.out.println("accountType "+ accountType);
+            //re create accoutns table -- acounts not set to unique
+            accountService.validateAccountCreate(accountType, currentUser.getId());
+//            success = accountDAO.createAccount(accountType, currentUser.getId());
+            //move to services
+//            if (!success) {
+//                System.out.println("Account creation failed.");
+//                router.navigate("/accounthome");
+//            }
+
+//            UserAccount userAccount = accountDAO.getAccount(router.getCurrentUser());
+            UserAccount userAccount = accountService.validateGetAccount(router.getCurrentUser());
+            //DOWN TO HERE
             success = accountDAO.createInitialBalance(userAccount.getId());
             if (!success) {
                 System.out.println(userAccount.getAccountType() + " account balance initialization failed.");
@@ -79,10 +100,13 @@ public class AccountCreateScreen extends Screen {
                 System.out.println("Account creation: Success!");
                 router.navigate("/viewaccounts");
             }
+
+        } catch (ResourcePersistenceException | InvalidRequestException e) {
+            e.printStackTrace();
+            router.navigate("/accounthome");
         } catch (Exception e) {
             e.printStackTrace();
+            router.navigate("/accounthome");
         }
-
-
     }
 }
