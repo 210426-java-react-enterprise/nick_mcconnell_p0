@@ -1,12 +1,14 @@
 package com.nickmcconnell.p0.screens;
 
 import com.nickmcconnell.p0.daos.AccountDAO;
+import com.nickmcconnell.p0.daos.TransactionDAO;
 import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.models.UserAccountAndBalance;
 import com.nickmcconnell.p0.services.AccountService;
+import com.nickmcconnell.p0.services.TransactionService;
 import com.nickmcconnell.p0.services.UserService;
 import com.nickmcconnell.p0.util.ScreenRouter;
 
@@ -20,13 +22,16 @@ public class AccountTransactionScreen extends Screen {
     private AccountService accountService;
     private ScreenRouter router;
     private AccountDAO accountDao;
+    private TransactionService transactionService;
 
-    public AccountTransactionScreen(BufferedReader consoleReader, AccountService accountService, ScreenRouter router, AccountDAO accountDao) {
+    public AccountTransactionScreen(BufferedReader consoleReader, AccountService accountService, ScreenRouter router, AccountDAO accountDao, TransactionService transactionService) {
         super("AccountTransactionScreen", "/accounttransaction");
         this.consoleReader = consoleReader;
         this.accountService = accountService;
         this.router = router;
         this.accountDao = accountDao;
+        this.transactionService = transactionService;
+
     }
 
     @Override
@@ -74,7 +79,7 @@ public class AccountTransactionScreen extends Screen {
 
             System.out.printf("How much would you like to %s?\n", transactionType);
             transactionAmount = Float.parseFloat(consoleReader.readLine());
-
+            //call service function
             if (transactionAmount < 0) {
                 System.out.println("You must enter an amount greater than 0.");
                 router.navigate("/accounthome");
@@ -87,9 +92,13 @@ public class AccountTransactionScreen extends Screen {
 
             if (transactionType.equals("Deposit")) {
                 System.out.println("deposit if");
+                Float depositBalanceSum = Float.sum(transactionAmount, userAccountAndBalance.getBalance());
+                transactionService.checkWithdrawal(userAccountAndBalance.getId(), depositBalanceSum);
+
             } else {
                 System.out.println("withdrawal if");
             }
+            router.navigate("/accounthome");
         } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your transaction.");
             this.render(); // => apparently not the best practice, just put router in here and => "/register"
