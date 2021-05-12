@@ -44,9 +44,6 @@ public class UserService {
         if (username == null || username.trim().isEmpty() || username.length() > 20) return false;
         if (password == null || password.trim().isEmpty() || password.length() > 255) return false;
 
-//        if (user.getUsername() == null || user.getUsername().trim().isEmpty() || user.getUsername().length() > 20) return false;
-//        if (user.getPassword() == null || user.getPassword().trim().isEmpty() || user.getPassword().length() > 255) return false;
-
         return true;
     }
 
@@ -64,6 +61,4 @@ public class UserService {
 
         return true;
     }
-
-
 }

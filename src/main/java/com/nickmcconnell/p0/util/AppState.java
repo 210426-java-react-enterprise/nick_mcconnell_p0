@@ -38,7 +38,7 @@ public class AppState {
                 .addScreen(new RegisterScreen(consoleReader, userService, router))
                 .addScreen(new AccountHomeScreen(consoleReader, userService, router))
                 .addScreen(new AccountsViewScreen(consoleReader, router, accountDao))
-                .addScreen(new AccountCreateScreen(consoleReader, accountService, router, accountDao))
+                .addScreen(new AccountCreateScreen(consoleReader, accountService, router))
                 .addScreen(new AccountTransactionScreen(consoleReader, accountService, router, accountDao, transactionService));
 
         System.out.println("Application Initialized");

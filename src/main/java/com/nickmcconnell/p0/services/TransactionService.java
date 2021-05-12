@@ -8,16 +8,14 @@ public class TransactionService {
     private TransactionDAO transactionDao;
 
     public TransactionService(TransactionDAO transactionDao){this.transactionDao=transactionDao;}
-
+//valideatedeposit and executeWithdrawal need exception handling
     public void validateDeposit(int id, float deposit){
 
         transactionDao.updateBalance(id, deposit);
     }
 
     public void executeWithdrawal(int id, float deposit){
-
-        boolean update = transactionDao.updateBalance(id, deposit);
-        System.out.println("Deposit status: " + update);
+        transactionDao.updateBalance(id, deposit);
     }
 
     public float validateWithdrawal(String transactionType, String withdrawal, float transactionAmount, float balance) throws InvalidRequestException{

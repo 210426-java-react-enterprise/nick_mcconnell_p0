@@ -41,7 +41,6 @@ public class UserDAO {
     public void save(AppUser newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            System.out.println("in try ov userdao save()");
             String sqlInsertUser = "insert into customers (username, password, email, first_name, last_name, age) values (?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sqlInsertUser, new String[]{"customer_id"});
             pstmt.setString(1, newUser.getUsername());

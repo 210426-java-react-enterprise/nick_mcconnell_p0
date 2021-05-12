@@ -37,7 +37,6 @@ public class LoginScreen extends Screen{
             System.out.println("Password: ");
             password = consoleReader.readLine();
 
-//            AppUser userLogin = new AppUser(username, password);
             AppUser newUser = userService.login(username, password);
 
             if (newUser.getUsername() != null){

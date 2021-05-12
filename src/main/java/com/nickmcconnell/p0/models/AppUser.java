@@ -23,11 +23,6 @@ public class AppUser {
         this.age = age;
     }
 
-//    public AppUser(String username, String password){
-//        this.username = username;
-//        this.password = password;
-//    }
-
     public int getId() {
         return id;
     }
@@ -83,10 +78,6 @@ public class AppUser {
     public void setAge(int age) {
         this.age = age;
     }
-
-//    public String toFileString() {
-//        return String.format("%s;%s;%s;%s;%s;%d;", username, password, email, firstName, lastName, age);
-//    }
 
     @Override
     public String toString() {

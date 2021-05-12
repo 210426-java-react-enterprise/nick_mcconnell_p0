@@ -36,7 +36,7 @@ public class AccountTransactionScreen extends Screen {
 
     @Override
     public void render() {
-
+        System.out.println("top of trans screen");
         AppUser currentUser = router.getCurrentUser();
         UserAccount currentAccount = accountDao.getAccount(currentUser);
         UserAccountAndBalance userAccountAndBalance = accountDao.getAccountAndBalance(currentUser);
@@ -84,15 +84,6 @@ public class AccountTransactionScreen extends Screen {
             transactionAmount = Float.parseFloat(consoleReader.readLine());
             transactionService.validateTransactionAmt(transactionAmount);
 
-//            if (transactionAmount < 0) {
-//                System.out.println("You must enter an amount greater than 0.");
-//                router.navigate("/accounthome");
-//            } else
-
-//                if (transactionType.equals(withdrawal) && transactionAmount > userAccountAndBalance.getBalance()) {
-//                System.out.println("Invalid amount. Withdrawal amount greater than account balance.");
-//                router.navigate("/accounthome");
-//            }
             float withdrawalAmount = transactionService.validateWithdrawal(transactionType, withdrawal, transactionAmount, userAccountAndBalance.getBalance());
 
             if (transactionType.equals("Deposit")) {
@@ -100,7 +91,6 @@ public class AccountTransactionScreen extends Screen {
                 transactionService.validateDeposit(userAccountAndBalance.getId(), depositBalanceSum);
 
             } else {
-//                float withdrawalBalanceSumDiff = userAccountAndBalance.getBalance() - transactionAmount;
                 transactionService.executeWithdrawal(userAccountAndBalance.getId(), withdrawalAmount);
 
             }
@@ -108,10 +98,13 @@ public class AccountTransactionScreen extends Screen {
         } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your transaction.");
             router.navigate("/accounttransaction");
-        } catch (InvalidRequestException | ResourcePersistenceException e) {
+        } catch (InvalidRequestException e) {
             e.printStackTrace();
             router.navigate("/accounttransaction");
-        } catch (Exception e) {
+        } catch (ResourcePersistenceException e) {
+            e.printStackTrace();
+            router.navigate("/accounttransaction");
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
