@@ -1,13 +1,12 @@
 package com.nickmcconnell.p0.util;
 
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.screens.Screen;
 
 public class ScreenRouter {
+
     private LinkedList<Screen> screens = new LinkedList<>();
     private AppUser currentUser;
-//    private UserAccount currentAccount;
 
     public ScreenRouter addScreen(Screen screen) {
         screens.add(screen);

@@ -84,15 +84,6 @@ public class AccountTransactionScreen extends Screen {
             transactionAmount = Float.parseFloat(consoleReader.readLine());
             transactionService.validateTransactionAmt(transactionAmount);
 
-//            if (transactionAmount < 0) {
-//                System.out.println("You must enter an amount greater than 0.");
-//                router.navigate("/accounthome");
-//            } else
-
-//                if (transactionType.equals(withdrawal) && transactionAmount > userAccountAndBalance.getBalance()) {
-//                System.out.println("Invalid amount. Withdrawal amount greater than account balance.");
-//                router.navigate("/accounthome");
-//            }
             float withdrawalAmount = transactionService.validateWithdrawal(transactionType, withdrawal, transactionAmount, userAccountAndBalance.getBalance());
 
             if (transactionType.equals("Deposit")) {
@@ -100,7 +91,6 @@ public class AccountTransactionScreen extends Screen {
                 transactionService.validateDeposit(userAccountAndBalance.getId(), depositBalanceSum);
 
             } else {
-//              float withdrawalBalanceSumDiff = userAccountAndBalance.getBalance() - transactionAmount;
                 transactionService.executeWithdrawal(userAccountAndBalance.getId(), withdrawalAmount);
 
             }

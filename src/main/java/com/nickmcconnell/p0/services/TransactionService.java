@@ -15,9 +15,7 @@ public class TransactionService {
     }
 
     public void executeWithdrawal(int id, float deposit){
-
-        boolean update = transactionDao.updateBalance(id, deposit);
-        System.out.println("Deposit status: " + update);
+        transactionDao.updateBalance(id, deposit);
     }
 
     public float validateWithdrawal(String transactionType, String withdrawal, float transactionAmount, float balance) throws InvalidRequestException{

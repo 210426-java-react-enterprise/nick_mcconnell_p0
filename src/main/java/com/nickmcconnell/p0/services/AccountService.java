@@ -14,19 +14,15 @@ public class AccountService {
         this.accountDao = accountDao;
     }
 
-    public UserAccount checkExistingAccount(AppUser currentUser) throws InvalidRequestException {
+    public void checkExistingAccount(AppUser currentUser) throws InvalidRequestException {
 
         UserAccount userAccount = accountDao.getAccount(currentUser);
-        System.out.println("In validateGetACcount " + userAccount.getAccountType());
         if(userAccount.getAccountType() != null){
-            System.out.println("in iff ot check existing account");
             throw new InvalidRequestException("You have already created an account.");
         }
-        return userAccount;
     }
 
     public void validateAccountCreate(String accountType, int id) throws InvalidRequestException {
-        System.out.println("in servcies arroucn create");
         boolean success = true;
         success = accountDao.createAccount(accountType, id);
 
@@ -36,18 +32,20 @@ public class AccountService {
     }
 
     public UserAccount validateGetAccount(AppUser currentUser) throws InvalidRequestException{
-        System.out.println("in services get account");
         UserAccount userAccount = accountDao.getAccount(currentUser);
 
         if(userAccount == null){
             throw new InvalidRequestException("An error occurred while retrieving your account.");
         }
         return userAccount;
-
     }
 
-
-
-//    public
-
+    public boolean validateInitialBalance(int id) throws InvalidRequestException{
+        boolean success = true;
+        success = accountDao.createInitialBalance(id);
+        if(!success){
+            throw new InvalidRequestException("Your account initialization failed.");
+        }
+        return true;
+    }
 }

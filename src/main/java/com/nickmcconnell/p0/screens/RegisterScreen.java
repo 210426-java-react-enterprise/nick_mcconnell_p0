@@ -58,7 +58,7 @@ public class RegisterScreen extends Screen {
 
         } catch (NumberFormatException e) {
             System.err.println("You provided an incorrect value for your age!  Please try again!");
-           router.navigate("/welcome"); // => apparently not the best practice, just put router in here and => "/register"
+           router.navigate("/welcome");
         }catch(InvalidRequestException | ResourcePersistenceException e){
             e.printStackTrace();
         } catch (Exception e) {

@@ -1,5 +1,8 @@
 package com.nickmcconnell.p0.screens;
 
+import com.nickmcconnell.p0.daos.AccountDAO;
+import com.nickmcconnell.p0.models.AppUser;
+import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.services.UserService;
 import com.nickmcconnell.p0.util.ScreenRouter;
 
@@ -18,16 +21,16 @@ public class AccountHomeScreen extends Screen {
 
     @Override
     public void render() {
-        System.out.println("Accounts Screen");
-        System.out.println("------------------");
-        System.out.println("1) View Accounts");
-        System.out.println("2) Create Account");
-        System.out.println("3) Account Transaction");
-        System.out.println("4) Return to Welcome Screen");
-
 
         try {
+            System.out.println("Accounts Screen");
+            System.out.println("------------------");
+            System.out.println("1) View Accounts");
+            System.out.println("2) Create Account");
+            System.out.println("3) Account Transaction");
+            System.out.println("4) Return to Welcome Screen");
             System.out.print("> ");
+
             String userSelection = consoleReader.readLine();
 
             switch (userSelection) {

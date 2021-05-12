@@ -4,8 +4,6 @@ import com.nickmcconnell.p0.daos.AccountDAO;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.models.UserAccountAndBalance;
-import com.nickmcconnell.p0.services.UserService;
-import com.nickmcconnell.p0.util.AppState;
 import com.nickmcconnell.p0.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -13,7 +11,6 @@ import java.io.BufferedReader;
 public class AccountsViewScreen extends Screen {
     private AccountDAO accountDao;
     private BufferedReader consoleReader;
-    //    private UserService userService;
     private ScreenRouter router;
 
     public AccountsViewScreen(BufferedReader consoleReader, ScreenRouter router, AccountDAO accountDao) {
