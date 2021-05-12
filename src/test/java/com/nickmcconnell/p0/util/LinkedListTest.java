@@ -7,13 +7,10 @@ import org.junit.Test;
 
 public class LinkedListTest {
     private LinkedList<String> sut;
-    //This example is showing what we will do with the screen
-    //the wildcard will allow
+
     private LinkedList<? extends Object> ex1; // generics with subtyping
     private LinkedList<?> ex2;
 
-    //does this before and after eacch test to ensure data is new each time
-    //unit test tests smallest => method.  If its bigger than that its an integration test.
     @Before
     public void setUpTest() {
         sut = new LinkedList<>();
@@ -39,14 +36,8 @@ public class LinkedListTest {
 
     @Test(expected = Exception.class)
     public void test_addWithNullValue() {
-        // Arrange
-        // sometimes blank if there's nothing in particular to do
+       sut.add(null);
 
-        // Act
-        sut.add(null);
-
-        // Assert
-        // sometimes blank, especially if you expect an exception to be thrown
     }
 
     @Test
@@ -76,29 +67,5 @@ public class LinkedListTest {
         int actualSize = sut.size();
         Assert.assertEquals(expectedResult, actualResult);
         Assert.assertEquals(expectedSize, actualSize);
-    }
-
-    // TODO: (Associate task) implement this method!
-    @Test
-    public void test_peekWithEmptyList() {
-
-    }
-
-    // TODO: (Associate task) implement this method!
-    @Test
-    public void test_peekWithPopulatedList() {
-
-    }
-
-    // TODO: (Associate task) implement this method!
-    @Test
-    public void test_containsWithEmptyList() {
-
-    }
-
-    // TODO: (Associate task) implement this method!
-    @Test
-    public void test_containsWithPopulatedList() {
-
     }
 }

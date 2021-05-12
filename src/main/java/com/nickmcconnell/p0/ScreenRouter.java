@@ -29,6 +29,4 @@ public class ScreenRouter {
     public AppUser getCurrentUser() {
         return currentUser;
     }
-
-
 }
