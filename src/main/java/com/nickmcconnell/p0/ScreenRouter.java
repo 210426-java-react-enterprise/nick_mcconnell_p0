@@ -1,4 +1,4 @@
-package com.nickmcconnell.p0.util;
+package com.nickmcconnell.p0;
 
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.screens.Screen;

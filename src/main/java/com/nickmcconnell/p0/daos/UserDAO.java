@@ -1,11 +1,8 @@
 package com.nickmcconnell.p0.daos;
 
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.util.ConnectionFactory;
+import com.nickmcconnell.p0.ConnectionFactory;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

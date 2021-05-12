@@ -1,10 +1,8 @@
 package com.nickmcconnell.p0.screens;
 
-import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.models.LoginCredentials;
 import com.nickmcconnell.p0.services.UserService;
-import com.nickmcconnell.p0.util.ScreenRouter;
+import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 

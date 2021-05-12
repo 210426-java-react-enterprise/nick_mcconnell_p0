@@ -1,12 +1,10 @@
 package com.nickmcconnell.p0.screens;
 
-import com.nickmcconnell.p0.daos.AccountDAO;
 import com.nickmcconnell.p0.exceptions.InvalidRequestException;
-import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.services.AccountService;
-import com.nickmcconnell.p0.util.ScreenRouter;
+import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
@@ -68,10 +66,11 @@ public class AccountCreateScreen extends Screen {
             }
 
         } catch (InvalidRequestException e) {
-            e.printStackTrace();
+            System.out.println("You have already created an account!");
+//            e.printStackTrace();
             router.navigate("/viewaccounts");
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             router.navigate("/viewaccounts");
         }
     }

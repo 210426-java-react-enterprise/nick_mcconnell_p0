@@ -1,5 +1,6 @@
 package com.nickmcconnell.p0.util;
 
+import com.nickmcconnell.p0.LinkedList;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

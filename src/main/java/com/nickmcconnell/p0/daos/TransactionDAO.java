@@ -1,6 +1,6 @@
 package com.nickmcconnell.p0.daos;
 
-import com.nickmcconnell.p0.util.ConnectionFactory;
+import com.nickmcconnell.p0.ConnectionFactory;
 
 import java.sql.*;
 

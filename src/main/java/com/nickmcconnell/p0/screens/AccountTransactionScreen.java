@@ -1,7 +1,6 @@
 package com.nickmcconnell.p0.screens;
 
 import com.nickmcconnell.p0.daos.AccountDAO;
-import com.nickmcconnell.p0.daos.TransactionDAO;
 import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
@@ -9,11 +8,9 @@ import com.nickmcconnell.p0.models.UserAccount;
 import com.nickmcconnell.p0.models.UserAccountAndBalance;
 import com.nickmcconnell.p0.services.AccountService;
 import com.nickmcconnell.p0.services.TransactionService;
-import com.nickmcconnell.p0.services.UserService;
-import com.nickmcconnell.p0.util.ScreenRouter;
+import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 
 public class AccountTransactionScreen extends Screen {
     private BufferedReader consoleReader;

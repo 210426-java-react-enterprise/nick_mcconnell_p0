@@ -1,9 +1,8 @@
-package com.nickmcconnell.p0.util;
+package com.nickmcconnell.p0;
 
 import com.nickmcconnell.p0.daos.AccountDAO;
 import com.nickmcconnell.p0.daos.TransactionDAO;
 import com.nickmcconnell.p0.daos.UserDAO;
-import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.screens.*;
 import com.nickmcconnell.p0.services.AccountService;
 import com.nickmcconnell.p0.services.TransactionService;
