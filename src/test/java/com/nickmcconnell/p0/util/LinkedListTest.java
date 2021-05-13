@@ -9,7 +9,7 @@ import org.junit.Test;
 public class LinkedListTest {
     private LinkedList<String> sut;
 
-    private LinkedList<? extends Object> ex1; // generics with subtyping
+    private LinkedList<? extends Object> ex1;
     private LinkedList<?> ex2;
 
     @Before
@@ -24,13 +24,10 @@ public class LinkedListTest {
 
     @Test
     public void test_addWithNonNullValue() {
-        // Arrange (prepare the test)
         int expectedSize = 1;
 
-        // Act (do the test)
         sut.add("data");
 
-        // Assert (ensure the results)
         int actualSize = sut.size();
         Assert.assertEquals(expectedSize, actualSize);
     }
@@ -43,28 +40,21 @@ public class LinkedListTest {
 
     @Test
     public void test_pollWithEmptyList() {
-        // Arrange
-        // nothing to do here...
 
-        // Act
         String actualResult = sut.poll();
 
-        // Assert
         Assert.assertNull(actualResult);
     }
 
     @Test
     public void test_pollWithPopulatedList() {
-        // Arrange
         sut.add("test data 1");
         sut.add("test data 2");
         String expectedResult = "test data 1";
         int expectedSize = 1;
 
-        // Act
         String actualResult = sut.poll();
 
-        // Assert
         int actualSize = sut.size();
         Assert.assertEquals(expectedResult, actualResult);
         Assert.assertEquals(expectedSize, actualSize);

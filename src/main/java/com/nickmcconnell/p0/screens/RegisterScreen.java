@@ -57,12 +57,17 @@ public class RegisterScreen extends Screen {
             userService.register(newUser);
 
         } catch (NumberFormatException e) {
-            System.err.println("You provided an incorrect value for your age!  Please try again!");
+            System.out.println("Invalid new user data provided!");
+            System.out.println("+--------------------------------+");
            router.navigate("/welcome");
         }catch(InvalidRequestException | ResourcePersistenceException e){
-            e.printStackTrace();
+            System.out.println("Invalid new user data provided!");
+            System.out.println("+--------------------------------+");
+            router.navigate("/welcome");
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Invalid new user data provided!");
+            System.out.println("+--------------------------------+");
+            router.navigate("/welcome");
         }
 
     }

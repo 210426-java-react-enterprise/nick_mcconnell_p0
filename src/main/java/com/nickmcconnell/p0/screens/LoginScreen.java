@@ -44,11 +44,14 @@ public class LoginScreen extends Screen{
                 System.out.println("Login Failed.");
                 router.navigate("/welcome");
             }
-
         } catch(NullPointerException e){
-            e.printStackTrace();
+            System.out.println("Invalid login credentials");
+            System.out.println("+--------------------------+");
+            router.navigate("/welcome");
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Login Failed.");
+            System.out.println("+--------------------------+");
+            router.navigate("/welcome");
         }
     }
 }

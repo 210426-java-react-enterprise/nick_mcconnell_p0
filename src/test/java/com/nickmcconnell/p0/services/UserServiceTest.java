@@ -16,7 +16,6 @@ public class UserServiceTest {
 
     private UserService sut;
     private UserDAO mockUserDao;
-    private AppUser appUser;
 
 
     @Before
@@ -58,7 +57,7 @@ public class UserServiceTest {
     @Test(expected = InvalidRequestException.class)
     public void test_registerWithInvalidUser(){
         //Arrange
-        AppUser invalidUser = new AppUser(0,"","","","","",30);
+        AppUser invalidUser = new AppUser(0,"","","","","",0);
         //Act
         sut.register(invalidUser);
         //Assert
@@ -68,14 +67,14 @@ public class UserServiceTest {
     }
 
     @Test
-    public void test_loginCredentialsInvalid() throws InvalidRequestException {
+    public void test_loginCredentialsInvalid() {
 
          boolean validate = sut.isLoginValid(null, null);
         assertFalse(validate);
     }
 
     @Test
-    public void test_loginCredentialValid() throws InvalidRequestException {
+    public void test_loginCredentialValid() {
 
        boolean validate = sut.isLoginValid("username", "password");
         assertTrue(validate);

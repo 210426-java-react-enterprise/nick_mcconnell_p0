@@ -32,7 +32,7 @@ public class TransactionServiceTest {
 
         try {
             sut.validateWithdrawal("same", "same", 1, 0);
-        } catch (InvalidRequestException e) {
+        } catch (Exception e) {
             assertTrue(e instanceof InvalidRequestException);
         }
     }
@@ -59,7 +59,6 @@ public class TransactionServiceTest {
         float transactionAmount = 1;
 
         sut.validateTransactionAmt(transactionAmount);
-
     }
 
 
