@@ -1,6 +1,6 @@
 
 # Project 0 - Nick's Bank
-A command line banking application. 
+### A command line banking application. 
 ## User Stories
 As a user, I can:
 - Register a password secured new user account
