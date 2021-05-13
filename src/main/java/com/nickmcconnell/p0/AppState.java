@@ -18,6 +18,10 @@ public class AppState {
     private ScreenRouter router;
     private boolean appRunning;
 
+    /**
+     * Sets initial state of the application and provides global class instantiations of essential classes.
+     */
+
     public AppState() {
         System.out.println("Initializing application");
 
@@ -31,6 +35,8 @@ public class AppState {
         final AccountService accountService = new AccountService(accountDao);
         final TransactionDAO transactionDao = new TransactionDAO();
         final TransactionService transactionService = new TransactionService(transactionDao);
+
+        //adds screen instances to custom linked list
         router = new ScreenRouter();
         router.addScreen(new WelcomeScreen(consoleReader, router))
                 .addScreen(new LoginScreen(consoleReader, userService, router))
@@ -54,6 +60,4 @@ public class AppState {
     public void setAppRunning(boolean appRunning) {
         this.appRunning = appRunning;
     }
-
-
 }

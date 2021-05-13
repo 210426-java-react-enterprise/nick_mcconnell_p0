@@ -13,6 +13,8 @@ public class UserDAO {
     /**
      * The user data access object => contains database queries for finding and saving user info
      */
+
+
     public void save(AppUser newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -102,7 +104,8 @@ public class UserDAO {
                 return user;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
         }
         return user;
     }

@@ -4,8 +4,10 @@ import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.exceptions.InvalidRequestException;
 import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.models.LoginCredentials;
 
+/**
+ * Service class handling validation pertaining to user account registration and login.
+ */
 public class UserService {
 
     private UserDAO userDao;
@@ -13,7 +15,7 @@ public class UserService {
     public UserService(UserDAO userDao) {
         this.userDao = userDao;
     }
-
+    //validates and saves to database new user data
     public void register(AppUser newUser) throws InvalidRequestException, ResourcePersistenceException {
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid new user data provided!");
@@ -29,7 +31,7 @@ public class UserService {
 
         userDao.save(newUser);
     }
-
+    //validates and logs in the current user
     public AppUser login(String username, String password){
         if(!isLoginValid(username, password)){
             throw new InvalidRequestException("Invalid login credentials provided");
@@ -38,7 +40,7 @@ public class UserService {
        AppUser newUser =  userDao.findUserByUsernameAndPassword(username, password);
         return newUser;
     }
-
+    //validates login credentials before attempting db call
     public boolean isLoginValid(String username, String password) {
 
         if (username == null || username.trim().isEmpty() || username.length() > 20) return false;
@@ -47,6 +49,7 @@ public class UserService {
         return true;
     }
 
+    //validates registration credentials before attempting db call
     public boolean isUserValid(AppUser user) {
         if (user == null) return false;
 

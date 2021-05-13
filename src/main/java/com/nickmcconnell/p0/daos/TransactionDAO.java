@@ -8,7 +8,7 @@ import java.sql.*;
  * The transaction data access object => contains database queries for updating account balances.
  */
 public class TransactionDAO {
-
+    //updates the balance field in balances table via sql query
     public boolean updateBalance(int id, float deposit){
 
         int rowsUpdated = 0;
