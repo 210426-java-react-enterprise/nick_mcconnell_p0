@@ -27,7 +27,7 @@ public class LoginScreen extends Screen{
             String password;
 
             System.out.println("Log into your account!");
-            System.out.println("------------------------");
+            System.out.println("+---------------------------+");
 
             System.out.println("Username: ");
             username = consoleReader.readLine();
@@ -46,11 +46,11 @@ public class LoginScreen extends Screen{
             }
         } catch(NullPointerException e){
             System.out.println("Invalid login credentials");
-            System.out.println("+--------------------------+");
+            System.out.println("+---------------------------+");
             router.navigate("/welcome");
         } catch (Exception e){
             System.out.println("Login Failed.");
-            System.out.println("+--------------------------+");
+            System.out.println("+---------------------------+");
             router.navigate("/welcome");
         }
     }
