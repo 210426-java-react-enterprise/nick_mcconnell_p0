@@ -1,7 +1,5 @@
 package com.nickmcconnell.p0.models;
 
-import sun.rmi.runtime.Log;
-
 public class LoginCredentials {
     private String username;
     private String password;

@@ -5,6 +5,9 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * An accounts option screen only visible to logged in users.
+ */
 public class AccountHomeScreen extends Screen {
 
     private BufferedReader consoleReader;

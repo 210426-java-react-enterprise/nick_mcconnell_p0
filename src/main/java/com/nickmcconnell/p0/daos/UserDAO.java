@@ -10,31 +10,11 @@ import java.sql.SQLException;
 
 public class UserDAO {
 
-    //tables
-    //user - PK id
-    //accounts - fk id fromuser
-    //login credentials - fk id from user
+    /**
+     * The user data access object => contains database queries for finding and saving user info
+     */
 
-    //Methods needed
-    //createNewUser => account => checking or saving
-    //createAccount => from account screen
-    //Check if column already exists first then
-    //widthdraw funds
-    //check funds => if sum desired greated than account, send overdraft messate
-    //else reduce funds by
 
-    //once logged in => how to stay logged in??
-    // always to select bassed on username and id?
-    //keep pointing at new user?
-
-    //login
-    //on success - get user info and account's and balances => use join
-    //then display menu to create account, deposit or withdraw
-    //after eaach re display above menu with exit option
-
-    //cf
-
-    //TODO (Associate task) Implement!
     public void save(AppUser newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -124,7 +104,8 @@ public class UserDAO {
                 return user;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
         }
         return user;
     }

@@ -6,8 +6,11 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * Screen where users enter login credentials which are then verified and allow access to user accounts.
+ */
+
 public class LoginScreen extends Screen{
-//    private UserDAO userDAO = new UserDAO();
     private BufferedReader consoleReader;
     private UserService userService;
     private ScreenRouter router;
@@ -28,7 +31,6 @@ public class LoginScreen extends Screen{
 
             System.out.println("Log into your account!");
             System.out.println("+---------------------------+");
-
             System.out.println("Username: ");
             username = consoleReader.readLine();
 
