@@ -12,9 +12,9 @@ public class AppUser {
 
     public AppUser(){super();}
 
-    public AppUser(String username, String password, String email, String firstName, String lastName, int age) {
+    public AppUser(int id, String username, String password, String email, String firstName, String lastName, int age) {
         System.out.println("AppUser constructor invoked!");
-
+        this.id =id;
         this.username = username;
         this.password = password;
         this.email = email;

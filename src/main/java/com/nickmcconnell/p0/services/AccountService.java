@@ -23,6 +23,7 @@ public class AccountService {
     }
 
     public void validateAccountCreate(String accountType, int id) throws InvalidRequestException {
+        //Testable
         boolean success = true;
         success = accountDao.createAccount(accountType, id);
 
@@ -32,6 +33,7 @@ public class AccountService {
     }
 
     public UserAccount validateGetAccount(AppUser currentUser) throws InvalidRequestException{
+        //Testable
         UserAccount userAccount = accountDao.getAccount(currentUser);
 
         if(userAccount == null){
@@ -41,6 +43,7 @@ public class AccountService {
     }
 
     public boolean validateInitialBalance(int id) throws InvalidRequestException{
+        //Testable
         boolean success = true;
         success = accountDao.createInitialBalance(id);
         if(!success){

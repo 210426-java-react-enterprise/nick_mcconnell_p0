@@ -80,12 +80,12 @@ public class AccountTransactionScreen extends Screen {
             System.out.printf("How much would you like to %s?\n", transactionType);
             transactionAmount = Float.parseFloat(consoleReader.readLine());
             transactionService.validateTransactionAmt(transactionAmount);
-
+            //
             float withdrawalAmount = transactionService.validateWithdrawal(transactionType, withdrawal, transactionAmount, userAccountAndBalance.getBalance());
 
             if (transactionType.equals("Deposit")) {
                 Float depositBalanceSum = Float.sum(transactionAmount, userAccountAndBalance.getBalance());
-                transactionService.validateDeposit(userAccountAndBalance.getId(), depositBalanceSum);
+                transactionService.executeDeposit(userAccountAndBalance.getId(), depositBalanceSum);
 
             } else {
                 transactionService.executeWithdrawal(userAccountAndBalance.getId(), withdrawalAmount);

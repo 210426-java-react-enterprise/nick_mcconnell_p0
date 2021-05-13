@@ -23,7 +23,7 @@ public class RegisterScreen extends Screen {
 
     @Override
     public void render() {
-
+        int id = 0;
         String firstName;
         String lastName;
         String email;
@@ -53,7 +53,7 @@ public class RegisterScreen extends Screen {
             System.out.println("Age: ");
             age = Integer.parseInt(consoleReader.readLine());
 
-            AppUser newUser = new AppUser(username, password, email, firstName,lastName, age);
+            AppUser newUser = new AppUser(id, username, password, email, firstName,lastName, age);
             userService.register(newUser);
 
         } catch (NumberFormatException e) {
