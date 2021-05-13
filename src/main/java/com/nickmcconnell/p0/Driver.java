@@ -1,7 +1,5 @@
 package com.nickmcconnell.p0;
 
-import com.nickmcconnell.p0.util.AppState;
-
 public class Driver {
 
     private static AppState app = new AppState();

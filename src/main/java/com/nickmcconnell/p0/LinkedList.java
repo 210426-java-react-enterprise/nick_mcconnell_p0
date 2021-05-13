@@ -1,4 +1,4 @@
-package com.nickmcconnell.p0.util;
+package com.nickmcconnell.p0;
 
 
 /**

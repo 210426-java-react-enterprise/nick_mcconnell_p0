@@ -1,5 +1,6 @@
 package com.nickmcconnell.p0.util;
 
+import com.nickmcconnell.p0.ConnectionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 

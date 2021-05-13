@@ -1,10 +1,8 @@
 package com.nickmcconnell.p0.screens;
 
-import com.nickmcconnell.p0.daos.UserDAO;
 import com.nickmcconnell.p0.models.AppUser;
-import com.nickmcconnell.p0.models.LoginCredentials;
 import com.nickmcconnell.p0.services.UserService;
-import com.nickmcconnell.p0.util.ScreenRouter;
+import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
@@ -46,11 +44,14 @@ public class LoginScreen extends Screen{
                 System.out.println("Login Failed.");
                 router.navigate("/welcome");
             }
-
         } catch(NullPointerException e){
-            e.printStackTrace();
+            System.out.println("Invalid login credentials");
+            System.out.println("+--------------------------+");
+            router.navigate("/welcome");
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Login Failed.");
+            System.out.println("+--------------------------+");
+            router.navigate("/welcome");
         }
     }
 }
