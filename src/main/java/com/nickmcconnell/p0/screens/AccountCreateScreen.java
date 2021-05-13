@@ -52,7 +52,7 @@ public class AccountCreateScreen extends Screen {
                     break;
                 default:
                     System.out.println("Invalid selection.");
-                    router.navigate("/createscreen");
+                    router.navigate("/accounthome");
             }
 
             accountService.validateAccountCreate(accountType, currentUser.getId());
@@ -62,15 +62,16 @@ public class AccountCreateScreen extends Screen {
 
             if (success) {
                 System.out.println("Account creation: Success!");
+                System.out.println("+---------------------------+");
+
                 router.navigate("/viewaccounts");
             }
 
         } catch (InvalidRequestException e) {
-            System.out.println("You have already created an account!");
-//            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/viewaccounts");
         } catch (Exception e) {
-//            e.printStackTrace();
             router.navigate("/viewaccounts");
         }
     }

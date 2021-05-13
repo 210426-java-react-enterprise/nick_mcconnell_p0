@@ -21,7 +21,7 @@ public class AccountHomeScreen extends Screen {
 
         try {
             System.out.println("Accounts Screen");
-            System.out.println("------------------");
+            System.out.println("+---------------------------+");
             System.out.println("1) View Accounts");
             System.out.println("2) Create Account");
             System.out.println("3) Account Transaction");
@@ -52,7 +52,8 @@ public class AccountHomeScreen extends Screen {
                     router.navigate("/accounthome");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
         }
 
     }

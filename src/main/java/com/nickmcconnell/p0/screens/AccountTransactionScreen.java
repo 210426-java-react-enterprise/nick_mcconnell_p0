@@ -33,7 +33,6 @@ public class AccountTransactionScreen extends Screen {
 
     @Override
     public void render() {
-        System.out.println("top of trans screen");
         AppUser currentUser = router.getCurrentUser();
         UserAccount currentAccount = accountDao.getAccount(currentUser);
         UserAccountAndBalance userAccountAndBalance = accountDao.getAccountAndBalance(currentUser);
@@ -46,16 +45,17 @@ public class AccountTransactionScreen extends Screen {
                 System.out.printf("Account - %s: $%.2f\n", userAccountAndBalance.getAccountType(), userAccountAndBalance.getBalance());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("Choose transaction type:");
-        System.out.println("------------------------");
-        System.out.println("1) Deposit");
-        System.out.println("2) Withdrawal");
-        System.out.println("3) Account Home");
+
 
         try {
+            System.out.println("Choose transaction type:");
+            System.out.println("+---------------------------+");
+            System.out.println("1) Deposit");
+            System.out.println("2) Withdrawal");
+            System.out.println("3) Account Home");
             System.out.print("> ");
             String userSelection = consoleReader.readLine();
             String transactionType = "";
@@ -74,13 +74,14 @@ public class AccountTransactionScreen extends Screen {
                     router.navigate("/accounthome");
                 default:
                     System.out.println("Invalid entry");
+                    System.out.println("+---------------------------+");
                     router.navigate("/accounttransaction");
             }
 
             System.out.printf("How much would you like to %s?\n", transactionType);
             transactionAmount = Float.parseFloat(consoleReader.readLine());
             transactionService.validateTransactionAmt(transactionAmount);
-            //
+
             float withdrawalAmount = transactionService.validateWithdrawal(transactionType, withdrawal, transactionAmount, userAccountAndBalance.getBalance());
 
             if (transactionType.equals("Deposit")) {
@@ -93,16 +94,19 @@ public class AccountTransactionScreen extends Screen {
             }
             router.navigate("/viewaccounts");
         } catch (NumberFormatException e) {
-            System.err.println("You provided an incorrect value for your transaction.");
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/accounttransaction");
         } catch (InvalidRequestException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/accounttransaction");
         } catch (ResourcePersistenceException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/accounttransaction");
         }catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

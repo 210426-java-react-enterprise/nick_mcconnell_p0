@@ -33,7 +33,7 @@ public class RegisterScreen extends Screen {
 
         try {
             System.out.println("Register for a new account!");
-            System.out.println("----------------------------");
+            System.out.println("+---------------------------+");
 
             System.out.println("First name: ");
             firstName = consoleReader.readLine();
@@ -57,16 +57,16 @@ public class RegisterScreen extends Screen {
             userService.register(newUser);
 
         } catch (NumberFormatException e) {
-            System.out.println("Invalid new user data provided!");
-            System.out.println("+--------------------------------+");
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
            router.navigate("/welcome");
         }catch(InvalidRequestException | ResourcePersistenceException e){
-            System.out.println("Invalid new user data provided!");
-            System.out.println("+--------------------------------+");
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/welcome");
         } catch (Exception e) {
-            System.out.println("Invalid new user data provided!");
-            System.out.println("+--------------------------------+");
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
             router.navigate("/welcome");
         }
 

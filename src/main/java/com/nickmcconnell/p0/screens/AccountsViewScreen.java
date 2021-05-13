@@ -29,6 +29,7 @@ public class AccountsViewScreen extends Screen {
         try{
             if(currentAccount.getAccountType() == null){
                 System.out.println("You have not created an account.");
+                System.out.println("+---------------------------+");
 
             } else {
                 UserAccountAndBalance userAccountAndBalance = accountDao.getAccountAndBalance(currentUser);
@@ -36,7 +37,8 @@ public class AccountsViewScreen extends Screen {
             }
             router.navigate("/accounthome");
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println("+---------------------------+");
         }
     }
 }
