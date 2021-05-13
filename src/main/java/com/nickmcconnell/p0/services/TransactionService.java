@@ -26,7 +26,7 @@ public class TransactionService {
     }
 
     public void validateTransactionAmt(float transactionAmount) throws InvalidRequestException {
-        if(transactionAmount < 0) {
+        if(transactionAmount <= 0) {
             throw new InvalidRequestException("Your transaction amount cannot be less than $0.00!");
         }
     }

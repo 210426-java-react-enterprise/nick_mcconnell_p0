@@ -52,7 +52,7 @@ public class AccountCreateScreen extends Screen {
                     break;
                 default:
                     System.out.println("Invalid selection.");
-                    router.navigate("/createscreen");
+                    router.navigate("/accounthome");
             }
 
             accountService.validateAccountCreate(accountType, currentUser.getId());

@@ -48,13 +48,14 @@ public class AccountTransactionScreen extends Screen {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Choose transaction type:");
-        System.out.println("+---------------------------+");
-        System.out.println("1) Deposit");
-        System.out.println("2) Withdrawal");
-        System.out.println("3) Account Home");
+
 
         try {
+            System.out.println("Choose transaction type:");
+            System.out.println("+---------------------------+");
+            System.out.println("1) Deposit");
+            System.out.println("2) Withdrawal");
+            System.out.println("3) Account Home");
             System.out.print("> ");
             String userSelection = consoleReader.readLine();
             String transactionType = "";
@@ -95,6 +96,7 @@ public class AccountTransactionScreen extends Screen {
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             System.out.println("+---------------------------+");
+            router.navigate("/accounttransaction");
         } catch (InvalidRequestException e) {
             System.out.println(e.getMessage());
             System.out.println("+---------------------------+");
