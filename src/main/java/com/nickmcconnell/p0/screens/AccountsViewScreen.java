@@ -8,6 +8,10 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * This screen displays the user's account type and balance.
+ */
+
 public class AccountsViewScreen extends Screen {
     private AccountDAO accountDao;
     private BufferedReader consoleReader;

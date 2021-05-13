@@ -6,6 +6,9 @@ import com.nickmcconnell.p0.exceptions.ResourcePersistenceException;
 import com.nickmcconnell.p0.models.AppUser;
 import com.nickmcconnell.p0.models.UserAccount;
 
+/**
+ * Service class handling validation pertaining to account creation.
+ */
 public class AccountService {
 
     private AccountDAO accountDao;

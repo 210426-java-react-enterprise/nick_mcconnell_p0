@@ -6,6 +6,10 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * Landing page when app starts
+ */
+
 public class WelcomeScreen extends Screen{
 
     private BufferedReader consoleReader;

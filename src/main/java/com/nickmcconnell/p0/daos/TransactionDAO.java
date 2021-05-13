@@ -4,7 +4,9 @@ import com.nickmcconnell.p0.ConnectionFactory;
 
 import java.sql.*;
 
-
+/**
+ * The transaction data access object => contains database queries for updating account balances.
+ */
 public class TransactionDAO {
 
     public boolean updateBalance(int id, float deposit){

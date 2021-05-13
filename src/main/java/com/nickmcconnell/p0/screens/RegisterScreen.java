@@ -8,6 +8,10 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * Screen where users enter registration information which is then saved to the database.
+ */
+
 public class RegisterScreen extends Screen {
 
     private UserService userService;

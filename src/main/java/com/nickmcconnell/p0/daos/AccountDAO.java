@@ -7,6 +7,11 @@ import com.nickmcconnell.p0.ConnectionFactory;
 
 import java.sql.*;
 
+/**
+ * The account data access object => contains database queries for get initializing,
+ * and getting accounts and account balances.
+ */
+
 public class AccountDAO {
 
     public UserAccountAndBalance getAccountAndBalance(AppUser currentUser) {

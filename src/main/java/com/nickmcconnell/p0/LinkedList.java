@@ -58,13 +58,11 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return soughtData;
     }
 
-    // TODO: (Associate task) implement this method!
     @Override
     public T peek() {
         return null;
     }
 
-    // TODO: (Associate task) implement this method!
     @Override
     public T remove(T data) {
         return null;
@@ -88,7 +86,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return null;
     }
 
-    // TODO: (Associate task) implement this method!
     @Override
     public boolean contains(T data) {
         return false;
@@ -99,10 +96,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return size;
     }
 
-    //Nested class
-    //Made static because we don't need access to instance members
-    //to access instance members or non static methods
-    //  => woul dhave to noe be static
     private static class Node<T> {
 
         T data;

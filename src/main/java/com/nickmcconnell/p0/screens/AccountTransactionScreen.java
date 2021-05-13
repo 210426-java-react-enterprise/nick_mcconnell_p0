@@ -12,10 +12,13 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * Screen supplying options to deposit or withdrawal from an account. Takes user input and sends it to the
+ * Transaction Service for Validation
+ */
+
 public class AccountTransactionScreen extends Screen {
     private BufferedReader consoleReader;
-    //    private UserService userService;
-
     private AccountService accountService;
     private ScreenRouter router;
     private AccountDAO accountDao;
@@ -28,7 +31,6 @@ public class AccountTransactionScreen extends Screen {
         this.router = router;
         this.accountDao = accountDao;
         this.transactionService = transactionService;
-
     }
 
     @Override
@@ -47,8 +49,6 @@ public class AccountTransactionScreen extends Screen {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
 
         try {
             System.out.println("Choose transaction type:");

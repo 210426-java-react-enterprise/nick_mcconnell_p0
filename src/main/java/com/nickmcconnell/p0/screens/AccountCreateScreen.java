@@ -8,6 +8,11 @@ import com.nickmcconnell.p0.ScreenRouter;
 
 import java.io.BufferedReader;
 
+/**
+ * Screen where users can choose an account type to create.  After selection, the account creation is validated
+ * and initialized with a balance of $0.00.
+ */
+
 public class AccountCreateScreen extends Screen {
     private BufferedReader consoleReader;
     private AccountService accountService;
